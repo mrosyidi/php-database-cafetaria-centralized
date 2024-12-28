@@ -33,4 +33,4 @@
         $foodService->showFood();
     }
 
-    testViewAddFood();
+    testViewShowFood();
