@@ -18,4 +18,13 @@
         var_dump($result);
     }
 
-    testCheckHelperFoodNotFound();
+    function testCheckHelperFoodFound(): void
+    {
+        $connection = Database::getConnection();
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $foods = $foodRepository->findAll();
+        $result = CheckHelper::check($foods, "Soto Ayam");
+        var_dump($result);
+    }
+
+    testCheckHelperFoodFound();
