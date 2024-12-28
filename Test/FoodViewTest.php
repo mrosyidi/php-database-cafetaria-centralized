@@ -5,6 +5,7 @@
     require_once __DIR__ . "/../Repository/FoodRepository.php";
     require_once __DIR__ . "/../Service/FoodService.php";
     require_once __DIR__ . "/../View/FoodView.php";
+    require_once __DIR__ . "/../Helper/CheckHelper.php";
     require_once __DIR__ . "/../Helper/InputHelper.php";
 
     use Config\Database;
@@ -21,4 +22,15 @@
         $foodView->showFood();
     }
 
-    testViewShowFood();
+    function testViewAddFood(): void 
+    {
+        $connection = Database::getConnection();
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodView = new FoodView($foodService);
+        $foodService->showFood();
+        $foodView->addFood();
+        $foodService->showFood();
+    }
+
+    testViewAddFood();
