@@ -10,7 +10,7 @@
             public function showFood(): void;
             public function addFood(string $name, int $price): void;
             public function getFood(): array;
-            public function removeFood(int $number): bool;
+            public function removeFood(string $name): bool;
         }
 
         class FoodServiceImpl implements FoodService 
@@ -53,9 +53,10 @@
                 return $foods;
             }
 
-            public function removeFood(int $number): bool
+            public function removeFood(string $name): bool
             {
-
+                $result = $this->foodRepository->remove($name) ? true : false;
+                return $result;
             }
         }
     }
