@@ -8,7 +8,7 @@
         {
             public function findAll(): array;
             public function save(Food $food): void;
-            public function remove(int $number): bool;
+            public function remove(string $name): bool;
         }
 
         class FoodRepositoryImpl implements FoodRepository 
@@ -45,9 +45,22 @@
                 $statement->execute([$food->getName(),$food->getPrice()]);
             }
 
-            public function remove(int $number): bool 
+            public function remove(string $name): bool 
             {
+                $sql = "SELECT name FROM foods WHERE name=?";
+                $statement = $this->connection->prepare($sql);
+                $statement->execute([$name]);
 
+                if($statement->fetch())
+                {
+                    $sql = "DELETE FROM foods WHERE name=?";
+                    $statement = $this->connection->prepare($sql);
+                    $statement->execute([$name]);
+                    return true;
+                }else
+                {
+                    return false;
+                }
             }
         }
     }
