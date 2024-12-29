@@ -15,6 +15,12 @@
     use View\FoodView;
     use Helper\InputHelper;
 
+    $connection = Database::getConnection();
+    
+    $foodRepository = new FoodRepositoryImpl($connection);
+    $foodService = new FoodServiceImpl($foodRepository);
+    $foodView = new FoodView($foodService);
+
     echo "Cafetaria App" . PHP_EOL;
 
     while(true)
@@ -31,7 +37,7 @@
 
         if($pilihan == "1")
         {
-
+            $foodView->showFood();
         }else if($pilihan == "2")
         {
 
