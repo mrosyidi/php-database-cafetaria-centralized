@@ -26,4 +26,14 @@
         var_dump($foods);
     }
 
-    testSave();
+    function testRemove(): void 
+    {
+        $connection = Database::getConnection();
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $result = $foodRepository->remove("Gado-Gado");
+        var_dump($result);
+        $foods = $foodRepository->findAll();
+        var_dump($foods);
+    }
+
+    testRemove();
