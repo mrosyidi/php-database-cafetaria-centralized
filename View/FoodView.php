@@ -90,10 +90,7 @@
                 }else if(!is_numeric($number))
                 {
                     echo "Gagal menghapus makanan, nomor harus bilangan" . PHP_EOL;
-                }else if(count($this->foodService->getFood()) < $number)
-                {
-                    echo "Gagal menghapus makanan nomor $number" . PHP_EOL;
-                }else if($number < 0) 
+                }else if(count($this->foodService->getFood()) < $number || $number <= 0)
                 {
                     echo "Gagal menghapus makanan nomor $number" . PHP_EOL;
                 }else 
