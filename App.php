@@ -4,6 +4,7 @@
     require_once __DIR__ . "/Entity/Food.php";
     require_once __DIR__ . "/Entity/Drink.php";
     require_once __DIR__ . "/Repository/FoodRepository.php";
+    require_once __DIR__ . "/Repository/DrinkRepository.php";
     require_once __DIR__ . "/Service/FoodService.php";
     require_once __DIR__ . "/View/FoodView.php";
     require_once __DIR__ . "/Helper/CheckHelper.php";
@@ -11,6 +12,7 @@
 
     use Config\Database;
     use Repository\FoodRepositoryImpl;
+    use Repository\DrinkRepositoryImpl;
     use Service\FoodServiceImpl;
     use View\FoodView;
     use Helper\InputHelper;
