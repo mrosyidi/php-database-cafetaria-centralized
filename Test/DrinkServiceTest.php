@@ -37,4 +37,14 @@
         var_dump($drinks);
     }
 
-    testGetDrink();
+    function testRemoveDrink(): void 
+    {
+        $connection = Database::getConnection();
+        $drinkRepository = new DrinkRepositoryImpl($connection);
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->showDrink();
+        $drinkService->removeDrink("Es Coklat");
+        $drinkService->showDrink();
+    }
+
+    testRemoveDrink();
