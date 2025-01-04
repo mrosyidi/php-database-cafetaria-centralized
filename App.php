@@ -18,13 +18,19 @@
     use Service\FoodServiceImpl;
     use Service\DrinkServiceImpl;
     use View\FoodView;
+    use View\DrinkView;
     use Helper\InputHelper;
 
     $connection = Database::getConnection();
     
     $foodRepository = new FoodRepositoryImpl($connection);
+    $drinkRepository = new DrinkRepositoryImpl($connection);
+
     $foodService = new FoodServiceImpl($foodRepository);
+    $drinkService = new DrinkServiceImpl($drinkRepository);
+
     $foodView = new FoodView($foodService);
+    $drinkView = new DrinkView($drinkService);
 
     echo "Cafetaria App" . PHP_EOL;
 
@@ -45,7 +51,7 @@
             $foodView->showFood();
         }else if($pilihan == "2")
         {
-
+            $drinkView->showDrink();
         }else if($pilihan == "3")
         {
 
