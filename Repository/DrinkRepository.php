@@ -47,7 +47,20 @@
 
             public function remove(string $name): bool
             {
+                $sql = "SELECT name FROM drinks WHERE name=?";
+                $statement = $this->connection->prepare($sql);
+                $statement->execute([$name]);
 
+                if($statement->fetch())
+                {
+                    $sql = "DELETE FROM drinks WHERE name=?";
+                    $statement = $this->connection->prepare($sql);
+                    $statement->execute([$name]);
+                    return true;
+                }else
+                {
+                    return false;
+                }
             }
         }
     }
