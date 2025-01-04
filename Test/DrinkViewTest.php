@@ -33,4 +33,15 @@
         $drinkService->showDrink();
     }
 
-    testViewAddDrink();
+    function testViewRemoveDrink(): void 
+    {
+        $connection = Database::getConnection();
+        $drinkRepository = new DrinkRepositoryImpl($connection);
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkView = new DrinkView($drinkService);
+        $drinkService->showDrink();
+        $drinkView->removeDrink();
+        $drinkService->showDrink();
+    }
+
+    testViewRemoveDrink();
