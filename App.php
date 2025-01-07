@@ -12,6 +12,7 @@
     require_once __DIR__ . "/Service/OrderService.php";
     require_once __DIR__ . "/View/FoodView.php";
     require_once __DIR__ . "/View/DrinkView.php";
+    require_once __DIR__ . "/View/OrderView.php";
     require_once __DIR__ . "/Helper/CheckHelper.php";
     require_once __DIR__ . "/Helper/InputHelper.php";
 
@@ -24,6 +25,7 @@
     use Service\OrderServieImpl;
     use View\FoodView;
     use View\DrinkView;
+    use View\OrderView;
     use Helper\InputHelper;
 
     $connection = Database::getConnection();
