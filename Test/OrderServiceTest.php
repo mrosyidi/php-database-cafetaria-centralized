@@ -28,4 +28,13 @@
         $orderService->showOrder();
     }
 
-    testAddOrder();
+    function testGetOrder(): void 
+    {
+        $connection = Database::getConnection();
+        $orderRepository = new OrderRepositoryImpl($connection);
+        $orderService = new OrderServiceImpl($orderRepository);
+        $orders = $orderService->getOrder();
+        var_dump($orders);
+    }
+
+    testGetOrder();
