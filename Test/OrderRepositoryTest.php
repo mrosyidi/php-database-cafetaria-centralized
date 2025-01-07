@@ -16,4 +16,14 @@
         var_dump($orders);
     }
 
-    testFindAll();
+    function testSave(): void 
+    {
+        $connection = Database::getConnection();
+        $order = new Order(1, "Es Oyen", 12000, 2);
+        $orderRepository = new OrderRepositoryImpl($connection);
+        $orderRepository->save($order);
+        $orders = $orderRepository->findAll();
+        var_dump($orders);
+    }
+
+    testSave();
