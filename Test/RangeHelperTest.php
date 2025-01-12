@@ -21,4 +21,13 @@
         var_dump($result);
     }
 
-    testRangeHelperOutOfRangeMinus();
+    function testRangeHelperOutOfRangePlus(): void
+    {
+        $connection = Database::getConnection();
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $foods = $foodRepository->findAll();
+        $result = RangeHelper::range($foods, 7);
+        var_dump($result);
+    }
+
+    testRangeHelperOutOfRangePlus();
