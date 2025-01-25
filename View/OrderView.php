@@ -19,7 +19,7 @@
             public function __construct(FoodService $foodService, DrinkService $drinkService, OrderService $orderService)
             {
                 $this->foodService = $foodService;
-                $this->drinkSerive = $drinkService;
+                $this->drinkService = $drinkService;
                 $this->orderService = $orderService;
             }
 
