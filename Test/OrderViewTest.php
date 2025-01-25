@@ -48,4 +48,18 @@
         $orderService->showOrder();
     }
 
-    testViewAddOrderFoodSameCode();
+    function testViewAddOrderFoodDifferentCode(): void 
+    {
+        $connection = Database::getConnection();
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $foodService = new FoodServiceImpl($foodRepository);
+        $drinkRepository = new DrinkRepositoryImpl($connection);
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $orderRepository = new OrderRepositoryImpl($connection);
+        $orderService = new OrderServiceImpl($orderRepository);
+        $orderView = new OrderView($foodService, $drinkService, $orderService);
+        $orderView->addOrder(1, true);
+        $orderService->showOrder();
+    }
+
+    testViewAddOrderFoodDifferentCode();
