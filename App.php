@@ -15,6 +15,7 @@
     require_once __DIR__ . "/View/OrderView.php";
     require_once __DIR__ . "/Helper/CheckHelper.php";
     require_once __DIR__ . "/Helper/CodeHelper.php";
+    require_once __DIR__ . "/Helper/DataHelper.php";
     require_once __DIR__ . "/Helper/InputHelper.php";
 
     use Config\Database;
