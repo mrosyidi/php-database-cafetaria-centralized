@@ -8,6 +8,7 @@
     require_once __DIR__ . "/Repository/FoodRepository.php";
     require_once __DIR__ . "/Repository/DrinkRepository.php";
     require_once __DIR__ . "/Repository/OrderRepository.php";
+    require_once __DIR__ . "/Repository/PaymentRepository.php";
     require_once __DIR__ . "/Service/FoodService.php";
     require_once __DIR__ . "/Service/DrinkService.php";
     require_once __DIR__ . "/Service/OrderService.php";
@@ -24,6 +25,7 @@
     use Repository\FoodRepositoryImpl;
     use Repository\DrinkRepositoryImpl;
     use Repository\OrderRepositoryImpl;
+    use Repository\PaymentRepositoryImpl;
     use Service\FoodServiceImpl;
     use Service\DrinkServiceImpl;
     use Service\OrderServiceImpl;
