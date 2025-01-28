@@ -12,6 +12,7 @@
     require_once __DIR__ . "/Service/FoodService.php";
     require_once __DIR__ . "/Service/DrinkService.php";
     require_once __DIR__ . "/Service/OrderService.php";
+    require_once __DIR__ . "/Service/PaymentService.php";
     require_once __DIR__ . "/View/FoodView.php";
     require_once __DIR__ . "/View/DrinkView.php";
     require_once __DIR__ . "/View/OrderView.php";
@@ -29,6 +30,7 @@
     use Service\FoodServiceImpl;
     use Service\DrinkServiceImpl;
     use Service\OrderServiceImpl;
+    use Service\PaymentServiceImpl;
     use View\FoodView;
     use View\DrinkView;
     use View\OrderView;
