@@ -27,4 +27,13 @@
         $paymentService->showPayment();
     }
 
-    testAddPayment();
+    function testGetPayment(): void 
+    {
+        $connection = Database::getConnection();
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $payments = $paymentService->getPayment();
+        var_dump($payments);
+    }
+
+    testGetPayment();
