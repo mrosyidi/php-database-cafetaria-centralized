@@ -20,6 +20,7 @@
     require_once __DIR__ . "/Helper/CheckHelper.php";
     require_once __DIR__ . "/Helper/CodeHelper.php";
     require_once __DIR__ . "/Helper/DataHelper.php";
+    require_once __DIR__ . "/Helper/FindHelper.php";
     require_once __DIR__ . "/Helper/RangeHelper.php";
     require_once __DIR__ . "/Helper/InputHelper.php";
 
