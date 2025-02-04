@@ -42,4 +42,4 @@
         $paymentView->addPayment();
     }
 
-    testViewAddPayment();
+    testViewShowPayment();
