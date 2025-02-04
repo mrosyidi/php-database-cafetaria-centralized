@@ -18,4 +18,13 @@
         var_dump($found);
     }
 
-    testFindHelperNotFound();
+    function testFindHelperFound(): void
+    {
+        $connection = Database::getConnection();
+        $orderRepository = new OrderRepositoryImpl($connection);
+        $orders = $orderRepository->findAll();
+        $found = FindHelper::find($orders, 1);
+        var_dump($found);
+    }
+
+    testFindHelperFound();
