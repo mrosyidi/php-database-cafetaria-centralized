@@ -45,14 +45,17 @@
     $foodRepository = new FoodRepositoryImpl($connection);
     $drinkRepository = new DrinkRepositoryImpl($connection);
     $orderRepository = new OrderRepositoryImpl($connection);
+    $paymentRepository = new PaymentRepositoryImpl($connection);
 
     $foodService = new FoodServiceImpl($foodRepository);
     $drinkService = new DrinkServiceImpl($drinkRepository);
     $orderService = new OrderServiceImpl($orderRepository);
+    $paymentService = new PaymentServiceImpl($paymentRepository);
 
     $foodView = new FoodView($foodService);
     $drinkView = new DrinkView($drinkService);
     $orderView = new OrderView($foodService, $drinkService, $orderService);
+    $paymentView = new PaymentView($orderService, $paymentService);
 
     echo "Cafetaria App" . PHP_EOL;
 
@@ -79,7 +82,7 @@
             $orderView->showOrder();
         }else if($pilihan == "4")
         {
-
+            $paymentView->showPayment();
         }else if($pilihan == "5")
         {
 
