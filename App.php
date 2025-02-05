@@ -37,6 +37,7 @@
     use Service\DrinkServiceImpl;
     use Service\OrderServiceImpl;
     use Service\PaymentServiceImpl;
+    use Service\DetailServiceImpl;
     use View\FoodView;
     use View\DrinkView;
     use View\OrderView;
