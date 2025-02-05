@@ -8,6 +8,7 @@
     require_once __DIR__ . "/../Service/PaymentService.php";
     require_once __DIR__ . "/../Service/DetailService.php";
     require_once __DIR__ . "/../View/DetailView.php";
+    require_once __DIR__ . "/../Helper/FindHelper.php";
     require_once __DIR__ . "/../Helper/InputHelper.php";
 
     use Config\Database;
@@ -29,4 +30,16 @@
         $detailView->showDetail();
     }
 
-    testViewShowDetail();
+    function testViewFilterDetail(): void 
+    {
+        $connection = Database::getConnection();
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $detailReposiory = new DetailRepositoryImpl($connection);
+        $detailService = new DetailServiceImpl($detailReposiory);
+        $detailView = new DetailView($detailService, $paymentService);
+        $paymentService->showPayment();
+        $detailView->filterDetail();
+    }
+
+    testViewFilterDetail();
