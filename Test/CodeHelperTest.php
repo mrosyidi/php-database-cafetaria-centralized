@@ -46,11 +46,13 @@
     {
         $connection = Database::getConnection();
         $orderRepository = new OrderRepositoryImpl($connection);
+        $paymentRepository = new PaymentRepositoryImpl($connection);
         $food = new Food("Mie Ayam", 6000);
         $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 2));
         $orders = $orderRepository->findAll();
-        $code = CodeHelper::code($orders, true);
+        $payments = $paymentRepository->findAll();
+        $code = CodeHelper::code($orders, $payments, true);
         var_dump($code);
     }
 
-    testCodeHelperSameCodePaymentEmpty();
+    testCodeHelperDifferentCode();
