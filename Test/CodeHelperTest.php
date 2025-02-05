@@ -5,6 +5,7 @@
     require_once __DIR__ . "/../Entity/Drink.php";
     require_once __DIR__ . "/../Entity/Order.php";
     require_once __DIR__ . "/../Repository/OrderRepository.php";
+    require_once __DIR__ . "/../Repository/PaymentRepository.php";
     require_once __DIR__ . "/../Service/OrderService.php";
     require_once __DIR__ . "/../Helper/CodeHelper.php";
 
@@ -13,6 +14,7 @@
     use Entity\Drink;
     use Entity\Order;
     use Repository\OrderRepositoryImpl;
+    use Repository\PaymentRepositoryImpl;
     use Service\OrderServiceImpl;
     use Helper\CodeHelper;
 
@@ -20,8 +22,10 @@
     {
         $connection = Database::getConnection();
         $orderRepository = new OrderRepositoryImpl($connection);
+        $paymentRepository = new PaymentRepositoryImpl($connection);
         $orders = $orderRepository->findAll();
-        $code = CodeHelper::code($orders, false);
+        $payments = $paymentRepository->findAll();
+        $code = CodeHelper::code($orders, $payments, false);
         var_dump($code);
     }
 
@@ -47,4 +51,4 @@
         var_dump($code);
     }
 
-    testCodeHelperDifferentCode();
+    testCodeHelperEmpty();
