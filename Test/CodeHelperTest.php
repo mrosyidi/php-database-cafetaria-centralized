@@ -70,4 +70,21 @@
         var_dump($code);
     }
 
-    testCodeHelperOrderEmpty();
+    function testCodeHelperOrderPaymentNotEmpty(): void
+    {
+        $connection = Database::getConnection();
+        $orderRepository = new OrderRepositoryImpl($connection);
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+        $food = new Food("Mie Ayam", 6000);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 2));
+        $drink = new Drink("Es Oyen", 12000);
+        $orderRepository->save(new Order(2, $drink->getName(), $drink->getPrice(), 2));
+        $payment = new Payment(2,24000,50000,26000);
+        $paymentRepository->save($payment);
+        $orders = $orderRepository->findAll();
+        $payments = $paymentRepository->findAll();
+        $code = CodeHelper::code($orders, $payments, true);
+        var_dump($code);
+    }
+
+    testCodeHelperOrderPaymentNotEmpty();
