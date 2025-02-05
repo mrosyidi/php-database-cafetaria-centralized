@@ -16,7 +16,7 @@
                 }
                 else if(!empty($orders) && !$exit)
                 {
-                    $code = $orders[sizeof($orders)]->getCode();
+                    $code = $orders[sizeof($orders)-1]->getCode();
                 }else if(!empty($orders) && $exit)
                 {
                     $max = max(array_map(fn($order)=>$order->getCode(), $orders));
