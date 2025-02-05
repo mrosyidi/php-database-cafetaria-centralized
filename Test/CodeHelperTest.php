@@ -4,6 +4,7 @@
     require_once __DIR__ . "/../Entity/Food.php";
     require_once __DIR__ . "/../Entity/Drink.php";
     require_once __DIR__ . "/../Entity/Order.php";
+    require_once __DIR__ . "/../Entity/Payment.php";
     require_once __DIR__ . "/../Repository/OrderRepository.php";
     require_once __DIR__ . "/../Repository/PaymentRepository.php";
     require_once __DIR__ . "/../Service/OrderService.php";
@@ -13,6 +14,7 @@
     use Entity\Food;
     use Entity\Drink;
     use Entity\Order;
+    use Entity\Payment;
     use Repository\OrderRepositoryImpl;
     use Repository\PaymentRepositoryImpl;
     use Service\OrderServiceImpl;
@@ -55,4 +57,17 @@
         var_dump($code);
     }
 
-    testCodeHelperDifferentCode();
+    function testCodeHelperOrderEmpty(): void
+    {
+        $connection = Database::getConnection();
+        $orderRepository = new OrderRepositoryImpl($connection);
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+        $payment = new Payment(2,48000,100000,52000);
+        $paymentRepository->save($payment);
+        $orders = $orderRepository->findAll();
+        $payments = $paymentRepository->findAll();
+        $code = CodeHelper::code($orders, $payments, false);
+        var_dump($code);
+    }
+
+    testCodeHelperOrderEmpty();
