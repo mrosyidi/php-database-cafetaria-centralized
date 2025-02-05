@@ -7,9 +7,11 @@
     require_once __DIR__ . "/../Repository/FoodRepository.php";
     require_once __DIR__ . "/../Repository/DrinkRepository.php";
     require_once __DIR__ . "/../Repository/OrderRepository.php";
+    require_once __DIR__ . "/../Repository/PaymentRepository.php";
     require_once __DIR__ . "/../Service/FoodService.php";
     require_once __DIR__ . "/../Service/DrinkService.php";
     require_once __DIR__ . "/../Service/OrderService.php";
+    require_once __DIR__ . "/../Service/PaymentService.php";
     require_once __DIR__ . "/../View/OrderView.php";
     require_once __DIR__ . "/../Helper/CodeHelper.php";
     require_once __DIR__ . "/../Helper/DataHelper.php";
@@ -20,9 +22,11 @@
     use Repository\FoodRepositoryImpl;
     use Repository\DrinkRepositoryImpl;
     use Repository\OrderRepositoryImpl;
+    use Repository\PaymentRepositoryImpl;
     use Service\FoodServiceImpl;
     use Service\DrinkServiceImpl;
     use Service\OrderServiceImpl;
+    use Service\PaymentServiceImpl;
     use View\OrderView;
    
     function testViewShowOrder(): void 
@@ -34,7 +38,9 @@
         $drinkService = new DrinkServiceImpl($drinkRepository);
         $orderRepository = new OrderRepositoryImpl($connection);
         $orderService = new OrderServiceImpl($orderRepository);
-        $orderView = new OrderView($foodService, $drinkService, $orderService);
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $orderView = new OrderView($foodService, $drinkService, $orderService, $paymentService);
         $orderView->showOrder();
     }
 
