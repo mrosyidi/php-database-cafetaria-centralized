@@ -8,6 +8,7 @@
     require_once __DIR__ . "/../Service/OrderService.php";
     require_once __DIR__ . "/../Service/PaymentService.php";
     require_once __DIR__ . "/../View/PaymentView.php";
+    require_once __DIR__ . "/../Helper/DuplicateHelper.php";
     require_once __DIR__ . "/../Helper/FindHelper.php";
     require_once __DIR__ . "/../Helper/InputHelper.php";
     require_once __DIR__ . "/../Helper/PayHelper.php";
