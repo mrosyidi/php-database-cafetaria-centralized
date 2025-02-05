@@ -4,17 +4,30 @@
     {
         class CodeHelper 
         {
-            public static function code(array $orders, bool $exit): int
+            public static function code(array $orders, array $payments, bool $exit): int
             {
-                if(empty($orders))
+                if(empty($orders) && empty($payments))
                 {
                     $code = 1;
-                }else if(!empty($orders) && !$exit)
+                }else if(empty($orders) && !empty($payments))
+                {                    
+                    $max = max(array_map(fn($payment)=>$payment->getCode(), $payments));
+                    $code = $max + 1;
+                }
+                else if(!empty($orders) && !$exit)
                 {
-                    $code = $orders[sizeof($orders)-1]->getCode();
+                    $code = $orders[sizeof($orders)]->getCode();
                 }else if(!empty($orders) && $exit)
                 {
-                    $code = $orders[sizeof($orders)-1]->getCode() + 1;
+                    $max = max(array_map(fn($order)=>$order->getCode(), $orders));
+
+                    if(!empty($payments))
+                    {
+                        $paymentMax = max(array_map(fn($payment)=>$payment->getCode(), $payments));
+                        $max = $max < $paymentMax ? $paymentMax : $max;
+                    }
+
+                    $code = $max + 1;
                 }
 
                 return $code;
