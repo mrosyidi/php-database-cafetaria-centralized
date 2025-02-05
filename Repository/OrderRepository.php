@@ -51,7 +51,16 @@ namespace Repository
 
         public function remove(int $code): void 
         {
+            $sql = "SELECT name FROM orders WHERE code=?";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute([$code]);
 
+            if($statement->fetch())
+            {
+                $sql = "DELETE FROM orders WHERE code=?";
+                $statement = $this->connection->prepare($sql);
+                $statement->execute([$code]);
+            }
         }
     }
 }
