@@ -101,9 +101,11 @@
         $drinkService = new DrinkServiceImpl($drinkRepository);
         $orderRepository = new OrderRepositoryImpl($connection);
         $orderService = new OrderServiceImpl($orderRepository);
-        $orderView = new OrderView($foodService, $drinkService, $orderService);
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $orderView = new OrderView($foodService, $drinkService, $orderService, $paymentService);
         $orderView->addOrder(2, true);
         $orderService->showOrder();
     }
 
-    testViewAddOrderDrinkSameCode();
+    testViewAddOrderDrinkDifferentCode();
