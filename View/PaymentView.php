@@ -14,6 +14,7 @@
         {
             private OrderService $orderService;
             private PaymentService $paymentService;
+            private DetailService $detailService;
 
             public function __construct(OrderService $orderService, PaymentService $paymentService, DetailService $detailService)
             {
@@ -79,9 +80,10 @@
                         }else
                         {
                             $change = $money-$pay;
-                            $this->paymentService->addPayment($code, $pay, $money);
                             $elements = DuplicateHelper::duplicate($orders, $code);
+                            $this->paymentService->addPayment($code, $pay, $money);
                             $this->orderService->removeOrder($code);
+                            $this->detailService->addDetail($elements);
 
                             echo "Kembalian : Rp." . $change . PHP_EOL;
                         }
