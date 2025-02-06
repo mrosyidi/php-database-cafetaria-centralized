@@ -24,6 +24,7 @@
     require_once __DIR__ . "/Helper/CheckHelper.php";
     require_once __DIR__ . "/Helper/CodeHelper.php";
     require_once __DIR__ . "/Helper/DataHelper.php";
+    require_once __DIR__ . "/Helper/DuplicateHelper.php";
     require_once __DIR__ . "/Helper/FindHelper.php";
     require_once __DIR__ . "/Helper/PayHelper.php";
     require_once __DIR__ . "/Helper/RangeHelper.php";
@@ -53,16 +54,19 @@
     $drinkRepository = new DrinkRepositoryImpl($connection);
     $orderRepository = new OrderRepositoryImpl($connection);
     $paymentRepository = new PaymentRepositoryImpl($connection);
+    $detailRepository = new DetailRepositoryImpl($connection);
 
     $foodService = new FoodServiceImpl($foodRepository);
     $drinkService = new DrinkServiceImpl($drinkRepository);
     $orderService = new OrderServiceImpl($orderRepository);
     $paymentService = new PaymentServiceImpl($paymentRepository);
+    $detailService = new DetailServiceImpl($detailRepository);
 
     $foodView = new FoodView($foodService);
     $drinkView = new DrinkView($drinkService);
-    $orderView = new OrderView($foodService, $drinkService, $orderService);
-    $paymentView = new PaymentView($orderService, $paymentService);
+    $orderView = new OrderView($foodService, $drinkService, $orderService, $paymentService);
+    $paymentView = new PaymentView($orderService, $paymentService, $detailService);
+    $detailView = new DetailView($detailService, $paymentService);
 
     echo "Cafetaria App" . PHP_EOL;
 
@@ -92,7 +96,7 @@
             $paymentView->showPayment();
         }else if($pilihan == "5")
         {
-
+            $detailView->showDetail();
         }else if($pilihan == "x")
         {
             break;
