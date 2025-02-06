@@ -4,6 +4,7 @@
     {
         use Service\OrderService;
         use Service\PaymentService;
+        use Service\DetailService;
         use Helper\DuplicateHelper;
         use Helper\FindHelper;
         use Helper\InputHelper;
@@ -14,10 +15,11 @@
             private OrderService $orderService;
             private PaymentService $paymentService;
 
-            public function __construct(OrderService $orderService, PaymentService $paymentService)
+            public function __construct(OrderService $orderService, PaymentService $paymentService, DetailService $detailService)
             {
                 $this->orderService = $orderService;
                 $this->paymentService = $paymentService;
+                $this->detailService = $detailService;
             }
 
             public function showPayment(): void
@@ -79,6 +81,7 @@
                             $change = $money-$pay;
                             $this->paymentService->addPayment($code, $pay, $money);
                             $elements = DuplicateHelper::duplicate($orders, $code);
+                            $this->orderService->removeOrder($code);
 
                             echo "Kembalian : Rp." . $change . PHP_EOL;
                         }
