@@ -3,6 +3,7 @@
     require_once __DIR__ . "/../Config/Database.php";
     require_once __DIR__ . "/../Entity/Order.php";
     require_once __DIR__ . "/../Entity/Payment.php";
+    require_once __DIR__ . "/../Entity/Detail.php";
     require_once __DIR__ . "/../Repository/OrderRepository.php";
     require_once __DIR__ . "/../Repository/PaymentRepository.php";
     require_once __DIR__ . "/../Repository/DetailRepository.php";
